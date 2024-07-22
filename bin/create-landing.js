@@ -61,6 +61,7 @@ const FooterWrapper = styled.footer\`
   bottom: 0;
 \`;
 
+
 export default Footer;`
   },
   {
