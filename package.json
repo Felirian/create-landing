@@ -1,0 +1,15 @@
+{
+  "name": "create-landing",
+  "version": "1.0.0",
+  "description": "Create a landing page with React",
+  "bin": {
+    "create-landing": "./bin/create-landing.js"
+  },
+  "scripts": {
+    "start": "node ./bin/create-landing.js"
+  },
+  "keywords": [],
+  "author": "felirian",
+  "license": "MIT",
+  "dependencies": {}
+}
