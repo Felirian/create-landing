@@ -3,90 +3,48 @@
 const { execSync } = require('child_process');
 const fs = require('fs');
 const path = require('path');
+const {additionalFiles} = require("./additionalFiles");
 
 // Название директории для нового проекта
-const projectName = process.argv[2] || 'my-landing-page';
+const projectName = process.argv[2] || 'landing-page';
 
 // Создаем новый проект с помощью create-react-app
-console.log(`Creating a new React app in ${path.resolve(projectName)}...`);
-execSync(`npx create-react-app ${projectName}`, { stdio: 'inherit' });
+console.log(`💫 Creating a new React app in ${path.resolve(projectName)}...`);
+execSync(`npx cre     ate-react-app ${projectName}`, { stdio: 'inherit' });
 
 // Переходим в директорию проекта
+console.log(`💩 We remove all garbage`);
 process.chdir(projectName);
 
-// Устанавливаем необходимые библиотеки
-console.log('Installing additional libraries...');
-execSync('npm install axios styled-components', { stdio: 'inherit' });
+// Удаление файлов
+const filesToDelete = [
+  'src/App.test.js',
+  'src/setupTests.js',
+  'src/reportWebVitals.js',
 
-// Создаем дополнительные файлы
-const additionalFiles = [
-  {
-    filename: 'src/components/Header.js',
-    content: `import React from 'react';
-import styled from 'styled-components';
+  'src/App.js',
+  'src/App.css',
 
-const Header = () => (
-  <HeaderWrapper>
-    <h1>Welcome to My Landing Page</h1>
-  </HeaderWrapper>
-);
+  'src/index.js',
+  'src/index.css',
 
-const HeaderWrapper = styled.header\`
-  background: #282c34;
-  padding: 20px;
-  color: white;
-  text-align: center;
-\`;
-
-export default Header;`
-  },
-  {
-    filename: 'src/components/Footer.js',
-    content: `import React from 'react';
-import styled from 'styled-components';
-
-const Footer = () => (
-  <FooterWrapper>
-    <p>&copy; 2023 My Landing Page. All rights reserved.</p>
-  </FooterWrapper>
-);
-
-const FooterWrapper = styled.footer\`
-  background: #282c34;
-  padding: 10px;
-  color: white;
-  text-align: center;
-  position: fixed;
-  width: 100%;
-  bottom: 0;
-\`;
-
-
-export default Footer;`
-  },
-  {
-    filename: 'src/App.js',
-    content: `import React from 'react';
-import Header from './components/Header';
-import Footer from './components/Footer';
-import './App.css';
-
-function App() {
-  return (
-    <div className="App">
-      <Header />
-      <main>
-        <h2>About Us</h2>
-        <p>This is an example landing page created with React.</p>
-      </main>
-      <Footer />
-    </div>
-  );
-}
-
-export default App;`
-  }
+  'src/logo.svg'
 ];
+
+// Удаляем файлы из массива
+filesToDelete.forEach(file => {
+  const filePath = path.join(file);
+  if (fs.existsSync(filePath)) {
+    fs.unlinkSync(filePath);
+    console.log(`Removed ${file}`);
+  }
+});
+
+// Устанавливаем необходимые библиотеки
+console.log('📚 Installing libraries...');
+execSync('npm install axios styled-components react-router-dom', { stdio: 'inherit' });
+execSync('npm install --save @emailjs/browser', { stdio: 'inherit' });
+
 
 // Создаем директории и файлы
 additionalFiles.forEach(file => {
@@ -97,4 +55,4 @@ additionalFiles.forEach(file => {
   fs.writeFileSync(file.filename, file.content, 'utf8');
 });
 
-console.log('Project setup complete!');
+console.log('✨✨✨Project setup complete!✨✨✨');
