@@ -1,4 +1,4 @@
-export const additionalFiles = [
+const additionalFiles = [
   {
     filename: 'src/components/Shared/Header.js',
     content: `import React from 'react';
