@@ -7,6 +7,12 @@ const GlobalStyles = createGlobalStyle`
     padding: 0;
     box-sizing: border-box;
     -webkit-tap-highlight-color: transparent;
+
+    &::selection {
+      background-color: rgba(141, 42, 191, 0.5);
+      color: #000000;
+    }
+
     //border: 1px pink solid;
   }
 
@@ -24,9 +30,9 @@ const GlobalStyles = createGlobalStyle`
     background-color: inherit;
     color: inherit;
   }
-  
+
   main {
-    overflow-x: hidden;
+    overflow: hidden;
     max-width: 100vw;
   }
 
@@ -70,6 +76,7 @@ const GlobalStyles = createGlobalStyle`
     color: inherit;
     -webkit-tap-highlight-color: transparent;
   }
+
   ul {
     list-style: none;
     padding: 0;

@@ -1,29 +1,17 @@
 #!/usr/bin/env node
 
 const {execSync} = require("child_process");
-//const fs = require("fs");
 const path = require("path");
-const crateFileStructure = require("./functions/setFiles");
+const createFileStructure = require("./functions/setFiles");
 const setPrettier = require("./functions/setPrettier");
+const setDependencies = require("./functions/setDependencies");
+const setVite = require("./functions/setVite");
 
 const projectPath = process.argv[2] || 'landing-page';
 
-console.log(`⚙ Start creating a new landing ${path.resolve(projectPath)}...`);
-
-crateFileStructure(projectPath);
-console.time()
-
-// execSync(`npx create-react-app ${projectPath}`, { stdio: 'inherit' });
-
-//process.chdir(projectPath);
-
-// console.log("📦 Устанавливаю зависимости...");
-// execSync("npm install", { stdio: "inherit" });
-// execSync("npm install styled-components react-router-dom @emailjs/browser axios", {
-//   stdio: "inherit",
-// });
-// execSync("npm install --save-dev prettier", { stdio: "inherit" });
-
+setVite(projectPath);
+createFileStructure();
+setDependencies();
 setPrettier();
 
 console.log("✅  The project has been successfully created.");
