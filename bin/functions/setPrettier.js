@@ -31,6 +31,7 @@ const setPrettier = () => {
       'utf-8'
     );
   }
+  console.log('✅  Prettier is set')
 }
 
 module.exports = setPrettier;
